@@ -40,8 +40,7 @@ p {
     line-height: 1.5;
 }
 
-.btn,
-a.btn {
+.btn, a.btn {
     background: #008fa1;
     color: #fff;
     padding: 8px 15px;
@@ -61,16 +60,17 @@ a.btn {
     font-size: 14px;
 }
 
-.btn:hover,
-a.btn:hover {
+.btn:hover, a.btn:hover {
     color: #fff;
     background: #00a5bb;
 }
+
 ul {
     list-style: none;
     margin: 0;
     padding-left: 10px;
 }
+
 ul li {
     display: inline-block;
     padding-right: 5px;
@@ -256,6 +256,16 @@ ul li {
 
 
 /*content wrapper**/
+@media (min-width: 1200px){
+    .container {
+        width: 1170px;
+        margin: 0 auto;
+    }
+}
+
+.container {
+    margin: 0 auto;
+}
 .wrapper {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -303,8 +313,8 @@ ul li {
 .timeline .item:before {
     content: "";
     position: absolute;
-    left: -43px;
-    top: 0;
+    left: -46px;
+    top: -3px;
     display: inline-block;
     width: 22px;
     height: 22px;

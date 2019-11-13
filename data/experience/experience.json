@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Software Engineer",
+    "time": "2018.7-2019.6",
+    "company": "Oracle",
+    "location": "suzhou",
+    "description": "I was responsible for crawling error logs from server, analyzing these logs and visualize these results. We firstly get these log files and push message into kafka. Then we get these log files from kafka and try to find out the root cause of each error. We will triage each error and map them to issues that already knows. I am a DevOps developer from the front end to backend, test and deployment.",
+    "tags": ["", ""]
+  },
+  {
+    "title": "Software Engineer",
+    "time": "2019.7-Now",
+    "company": "EIS Group",
+    "location": "suzhou",
+    "description": "React, mobx and axios.",
+    "tags": ["", ""]
+  }
+]

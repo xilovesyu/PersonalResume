@@ -1,161 +1,70 @@
 import React from "react";
+import { graphql, StaticQuery } from "gatsby"
 
-export default class Container extends React.Component {
+class Container extends React.Component {
     render() {
+        const experience = this.props.data.allExperienceJson.edges
+        const education = this.props.data.allEducationJson.nodes
         return (
             <div className="wrapper container">
                 <section id="experiences-section" className="experiences-section section">
                     <h2 className="section-title">Work Experiences</h2>
                     <div className="timeline">
-                        <div className="item">
-                            <div className="work-place">
-                                <h3 className="place">Google</h3>
-                                <div className="location"><i className="fa fa-map-marker" aria-hidden="true"></i>Mountain
-                                    View
-                                </div>
-                            </div>
-                            <div className="job-meta">
-                                <div className="title">Senior Software Engineer</div>
-                                <div className="time">2016 - Present</div>
-                            </div>
-                            <div className="job-desc">
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor.
-                                    Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                                    ridiculus
-                                    mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Donec pede
-                                    justo,
-                                    fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-                                    imperdiet a,
-                                    venenatis vitae, justo.</p>
-                                <ul>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Donec pede justo ante</li>
-                                    <li>Maecenas tempus tellus eget</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div className="item">
-                            <div className="work-place">
-                                <h3 className="place">Apple</h3>
-                                <div className="location"><i className="fa fa-map-marker" aria-hidden="true"></i>New
-                                    York
-                                </div>
-                            </div>
-                            <div className="job-meta">
-                                <div className="title">Lead Software Engineer</div>
-                                <div className="time">2015 - 2016</div>
-                            </div>
-                            <div className="job-desc">
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor.
-                                    Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                                    ridiculus
-                                    mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Donec pede
-                                    justo,
-                                    fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-                                    imperdiet a,
-                                    venenatis vitae, justo.</p>
-                            </div>
-                        </div>
-
-                        <div className="item">
-                            <div className="work-place">
-                                <h3 className="place">Twitter</h3>
-                                <div className="location"><i className="fa fa-map-marker" aria-hidden="true"></i>London
-                                </div>
-                            </div>
-                            <div className="job-meta">
-                                <div className="title">Software Engineer</div>
-                                <div className="time">2013 - 2015</div>
-                            </div>
-                            <div className="job-desc">
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor.
-                                    Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                                    ridiculus
-                                    mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Donec pede
-                                    justo,
-                                    fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-                                    imperdiet a,
-                                    venenatis vitae, justo.</p>
-                            </div>
-                        </div>
-
-                        <div className="item">
-                            <div className="work-place">
-                                <h3 className="place">Startup Hub</h3>
-                                <div className="location"><i className="fa fa-map-marker" aria-hidden="true"></i>London
-                                </div>
-                            </div>
-                            <div className="job-meta">
-                                <div className="title">Founder &amp; Lead Developer</div>
-                                <div className="time">2012 - 2013</div>
-                            </div>
-                            <div className="job-desc">
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor.
-                                    Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                                    ridiculus
-                                    mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Donec pede
-                                    justo,
-                                    fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-                                    imperdiet a,
-                                    venenatis vitae, justo.</p>
-                            </div>
-                        </div>
-
+                        {
+                            experience.map((one, index) => {
+                                const {company, description, time, title, tags, location} = one.node
+                                return (
+                                  <div className="item" key={index}>
+                                      <div className="work-place">
+                                          <h3 className="place">{company}</h3>
+                                          <div className="location">
+                                              <i className="fa fa-map-marker" aria-hidden="true"/>
+                                              {location}
+                                          </div>
+                                      </div>
+                                      <div className="job-meta">
+                                          <div className="title">{title}</div>
+                                          <div className="time">{time}</div>
+                                      </div>
+                                      <div className="job-desc">
+                                          <p>{description}</p>
+                                          <ul>
+                                              {
+                                                  tags.map((tag, index2) => {
+                                                      return  <li key={index2}>{tag}</li>
+                                                  })
+                                              }
+                                          </ul>
+                                      </div>
+                                  </div>
+                                )
+                            })
+                        }
                     </div>
-
                 </section>
 
                 <section id="education-section" className="education-section section">
                     <h2 className="section-title">Education</h2>
                     <div className="row">
-                        <div className="item col-xs-12 col-sm-4">
-                            <div className="item-inner">
-                                <h3 className="degree">MSc Computer Science</h3>
-                                <div className="education-body">
-                                    University College of London
-                                </div>
-                                <div className="time">2016 - 2012</div>
-                                <div className="desc">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor.
-                                    Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item col-xs-12 col-sm-4">
-                            <div className="item-inner">
-                                <h3 className="degree">MSc Applied Mathematics</h3>
-                                <div className="education-body">
-                                    University of Bristol
-                                </div>
-                                <div className="time">2010 - 2016</div>
-                                <div className="desc">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor.
-                                    Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item col-xs-12 col-sm-4">
-                            <div className="item-inner">
-                                <h3 className="degree">BSc Creative Technology</h3>
-                                <div className="education-body">
-                                    University of Bristol
-                                </div>
-                                <div className="time">2007 - 2010</div>
-                                <div className="desc">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor.
-                                    Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
-                                </div>
-                            </div>
-                        </div>
-
+                        {
+                            education.map((one,index) => {
+                                const {schoolName, time, major,degree,description} = one
+                                return (
+                                  <div className="item col-xs-12 col-sm-4" key={index}>
+                                      <div className="item-inner">
+                                          <h3 className="degree">{degree}</h3>
+                                          <div className="education-body">
+                                              {schoolName}
+                                          </div>
+                                          <div className="time">{time}</div>
+                                          <div className="desc">
+                                              {description}
+                                          </div>
+                                      </div>
+                                  </div>
+                                )
+                            })
+                        }
                     </div>
                 </section>
 
@@ -236,15 +145,15 @@ export default class Container extends React.Component {
                          data-interval="8000">
 
                         <ol className="carousel-indicators">
-                            <li data-target="#testimonials-carousel" data-slide-to="0" className="active"></li>
-                            <li data-target="#testimonials-carousel" data-slide-to="1"></li>
-                            <li data-target="#testimonials-carousel" data-slide-to="2"></li>
+                            <li data-target="#testimonials-carousel" data-slide-to="0" className="active"/>
+                            <li data-target="#testimonials-carousel" data-slide-to="1"/>
+                            <li data-target="#testimonials-carousel" data-slide-to="2"/>
                         </ol>
 
                         <div className="carousel-inner">
                             <div className="item active">
                                 <blockquote className="quote">
-                                    <i className="fa fa-quote-left"></i>
+                                    <i className="fa fa-quote-left"/>
                                     <p>James is an excellent software engineer and he is passionate about what he does.
                                         Lorem ipsum
                                         dolor sit amet, consectetuer adipiscing elit. Suspendisse porttitor metus
@@ -258,7 +167,7 @@ export default class Container extends React.Component {
                             </div>
                             <div className="item">
                                 <blockquote className="quote">
-                                    <p><i className="fa fa-quote-left"></i>
+                                    <p><i className="fa fa-quote-left"/>
                                         Sed massa leo, aliquet non velit eu, volutpat vulputate odio. Interdum et
                                         malesuada fames ac
                                         ante ipsum primis in faucibus. Suspendisse porttitor metus eros, ut fringilla
@@ -274,7 +183,7 @@ export default class Container extends React.Component {
                             </div>
                             <div className="item">
                                 <blockquote className="quote">
-                                    <p><i className="fa fa-quote-left"></i>
+                                    <p><i className="fa fa-quote-left"/>
                                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula
                                         eget dolor.
                                         Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes</p>
@@ -306,11 +215,11 @@ export default class Container extends React.Component {
                                          alt=""/>
                                 </figure>
                                 <div className="content text-left">
-                                    <h3 className="sub-title"><a href="#">Project Lorem Ipsum</a></h3>
+                                    <h3 className="sub-title"><a>Project Lorem Ipsum</a></h3>
                                     <div className="meta">AngularJS</div>
-                                    <div className="action"><a href="#">View on Github</a></div>
+                                    <div className="action"><a >View on Github</a></div>
                                 </div>
-                                <a className="link-mask" href="#"></a>
+                                <a className="link-mask" ></a>
                             </div>
                         </div>
                         <div className="item backend col-md-3 col-xs-6 ">
@@ -320,11 +229,11 @@ export default class Container extends React.Component {
                                          alt=""/>
                                 </figure>
                                 <div className="content text-left">
-                                    <h3 className="sub-title"><a href="#">Project Lorem Ipsum</a></h3>
+                                    <h3 className="sub-title"><a >Project Lorem Ipsum</a></h3>
                                     <div className="meta">Django</div>
-                                    <div className="action"><a href="#">View on Github</a></div>
+                                    <div className="action"><a >View on Github</a></div>
                                 </div>
-                                <a className="link-mask" href="#"></a>
+                                <a className="link-mask" />
                             </div>
                         </div>
                         <div className="item backend frontend col-md-3 col-xs-6 ">
@@ -334,11 +243,11 @@ export default class Container extends React.Component {
                                          alt=""/>
                                 </figure>
                                 <div className="content text-left">
-                                    <h3 className="sub-title"><a href="#">Project Lorem Ipsum</a></h3>
+                                    <h3 className="sub-title"><a >Project Lorem Ipsum</a></h3>
                                     <div className="meta">Django/JavaScript</div>
-                                    <div className="action"><a href="#">View on Github</a></div>
+                                    <div className="action"><a >View on Github</a></div>
                                 </div>
-                                <a className="link-mask" href="#"></a>
+                                <a className="link-mask" />
                             </div>
                         </div>
                         <div className="item frontend col-md-3 col-xs-6 ">
@@ -348,11 +257,11 @@ export default class Container extends React.Component {
                                          alt=""/>
                                 </figure>
                                 <div className="content text-left">
-                                    <h3 className="sub-title"><a href="#">Project Lorem Ipsum</a></h3>
+                                    <h3 className="sub-title"><a >Project Lorem Ipsum</a></h3>
                                     <div className="meta">ReactJS</div>
-                                    <div className="action"><a href="#">View on Github</a></div>
+                                    <div className="action"><a >View on Github</a></div>
                                 </div>
-                                <a className="link-mask" href="#"></a>
+                                <a className="link-mask" ></a>
                             </div>
                         </div>
                         <div className="item backend col-md-3 col-xs-6 ">
@@ -362,11 +271,11 @@ export default class Container extends React.Component {
                                          alt=""/>
                                 </figure>
                                 <div className="content text-left">
-                                    <h3 className="sub-title"><a href="#">Project Lorem Ipsum</a></h3>
+                                    <h3 className="sub-title"><a >Project Lorem Ipsum</a></h3>
                                     <div className="meta">Python</div>
-                                    <div className="action"><a href="#">View on Github</a></div>
+                                    <div className="action"><a >View on Github</a></div>
                                 </div>
-                                <a className="link-mask" href="#"></a>
+                                <a className="link-mask" ></a>
                             </div>
                         </div>
                         <div className="item backend col-md-3 col-xs-6 ">
@@ -376,11 +285,11 @@ export default class Container extends React.Component {
                                          alt=""/>
                                 </figure>
                                 <div className="content text-left">
-                                    <h3 className="sub-title"><a href="#">Project Lorem Ipsum</a></h3>
+                                    <h3 className="sub-title"><a >Project Lorem Ipsum</a></h3>
                                     <div className="meta">JavaScript</div>
-                                    <div className="action"><a href="#">View on Github</a></div>
+                                    <div className="action"><a >View on Github</a></div>
                                 </div>
-                                <a className="link-mask" href="#"></a>
+                                <a className="link-mask" ></a>
                             </div>
                         </div>
 
@@ -391,11 +300,11 @@ export default class Container extends React.Component {
                                          alt=""/>
                                 </figure>
                                 <div className="content text-left">
-                                    <h3 className="sub-title"><a href="#">Project Lorem Ipsum</a></h3>
+                                    <h3 className="sub-title"><a >Project Lorem Ipsum</a></h3>
                                     <div className="meta">HTML/AngularJS</div>
-                                    <div className="action"><a href="#">View on Github</a></div>
+                                    <div className="action"><a >View on Github</a></div>
                                 </div>
-                                <a className="link-mask" href="#"></a>
+                                <a className="link-mask" ></a>
                             </div>
                         </div>
 
@@ -406,11 +315,11 @@ export default class Container extends React.Component {
                                          alt=""/>
                                 </figure>
                                 <div className="content text-left">
-                                    <h3 className="sub-title"><a href="#">Project Lorem Ipsum</a></h3>
+                                    <h3 className="sub-title"><a >Project Lorem Ipsum</a></h3>
                                     <div className="meta">Python/AngularJS</div>
-                                    <div className="action"><a href="#">View on Github</a></div>
+                                    <div className="action"><a >View on Github</a></div>
                                 </div>
-                                <a className="link-mask" href="#"></a>
+                                <a className="link-mask" ></a>
                             </div>
                         </div>
 
@@ -433,25 +342,25 @@ export default class Container extends React.Component {
                                 tellus.</p>
                             <p><strong>I can help with the following:</strong></p>
                             <ul className="list-unstyled service-list">
-                                <li><i className="fa fa-check" aria-hidden="true"></i> App development with ReactJS</li>
-                                <li><i className="fa fa-check" aria-hidden="true"></i> Front-end development with
+                                <li><i className="fa fa-check" aria-hidden="true"/> App development with ReactJS</li>
+                                <li><i className="fa fa-check" aria-hidden="true"/> Front-end development with
                                     AngularJS
                                 </li>
-                                <li><i className="fa fa-check" aria-hidden="true"></i> Back-end development with
+                                <li><i className="fa fa-check" aria-hidden="true"/> Back-end development with
                                     Django/Python
                                 </li>
-                                <li><i className="fa fa-check" aria-hidden="true"></i> UI development</li>
-                                <li><i className="fa fa-check" aria-hidden="true"></i> UX prototyping</li>
+                                <li><i className="fa fa-check" aria-hidden="true"/> UI development</li>
+                                <li><i className="fa fa-check" aria-hidden="true"/> UX prototyping</li>
                             </ul>
                             <p>Drop me a line at <a href="mailto:someone@example.com">james.doe@website.com</a> or call
                                 me at <a
                                     href="tel:01234567890">0123 456 7890</a></p>
                             <ul className="social list-inline">
-                                <li><a href="#"><i className="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i className="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i className="fa fa-github-alt" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i className="fa fa-skype" aria-hidden="true"></i></a></li>
+                                <li><a ><i className="fa fa-linkedin" aria-hidden="true"/></a></li>
+                                <li><a ><i className="fa fa-twitter" aria-hidden="true"/></a></li>
+                                <li><a ><i className="fa fa-google-plus" aria-hidden="true"/></a></li>
+                                <li><a ><i className="fa fa-github-alt" aria-hidden="true"/></a></li>
+                                <li><a ><i className="fa fa-skype" aria-hidden="true"/></a></li>
                             </ul>
                         </div>
                     </div>
@@ -462,3 +371,40 @@ export default class Container extends React.Component {
         );
     }
 }
+
+
+
+
+export default () => (
+  <StaticQuery
+    query={graphql`
+query MyQuery {
+  allExperienceJson {
+    edges {
+      node {
+        id
+        time
+        title
+        company
+        description,
+        tags,
+        location
+      }
+    }
+  }
+  allEducationJson {
+    nodes {
+      schoolName
+      time
+      major
+      description
+      degree
+    }
+  }
+}
+    `}
+    render={data => (
+      <Container data={data}/>
+    )}
+  />
+)
