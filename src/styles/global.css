@@ -384,7 +384,12 @@ ul li {
 .education-section {
     margin: 0 auto;
     margin-bottom: 45px;
-    text-align: center;
+}
+.education-section .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 .education-section .item {
     margin-bottom: 45px;
@@ -547,7 +552,7 @@ ul li {
 .portfolio-section .filters {
     list-style: none;
     margin: 0 auto;
-    margin-bottom: 60px;
+    margin-bottom: 16px;
     text-align: center;
     border-bottom: 1px solid #e8e8e8;
 }
@@ -572,9 +577,11 @@ ul li {
 .portfolio-section .items-wrapper {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 .portfolio-section .item {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     width: 240px;
     padding: 15px;
 }
@@ -739,7 +746,13 @@ ul li {
     }
     .education-section .item {
         padding: 0;
+        width: 100%;
     }
+
+    .skills-section .top-skills .row {
+        flex-wrap: wrap;
+    }
+
     .portfolio-section .filters .type {
         font-size: 12px;
         margin-right: 5px;
