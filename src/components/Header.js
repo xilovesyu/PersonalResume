@@ -107,18 +107,18 @@ class Header extends React.Component {
                   <a className="scrollto"
                      onClick={(e) => this.handleNavClick(e, "skills-section")}>Skills</a>
                 </li>
-                <li>
+                {/*<li>
                   <a className="scrollto"
                      onClick={(e) => this.handleNavClick(e, "testimonials-section")}>Testimonials</a>
-                </li>
+                </li>*/}
                 <li>
                   <a className="scrollto"
                      onClick={(e) => this.handleNavClick(e, "portfolio-section")}>Portfolio</a>
                 </li>
-                <li>
+                {/*<li>
                   <a className="scrollto"
                      onClick={(e) => this.handleNavClick(e, "contact-section")}>Contact</a>
-                </li>
+                </li>*/}
               </ul>
             </div>
           </div>

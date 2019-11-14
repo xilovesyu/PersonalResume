@@ -44,6 +44,12 @@ module.exports = {
       options: {
         path: `${__dirname}/data/projects`,
       }
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/data/skills`,
+      }
     }
   ],
 }

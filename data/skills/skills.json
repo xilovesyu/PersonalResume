@@ -1,0 +1,19 @@
+{
+  "mainSkills": [
+    {
+      "name": "Java",
+      "proficiency": "Best usage.",
+      "proficiencyPercentage": 95,
+      "description": "I am familiar with java and have used java for 3 years."
+    },
+    {
+      "name": "React",
+      "proficiency": "Best usage.",
+      "proficiencyPercentage": 89,
+      "description": "Have Learned react for 3 months and use react in many projects."
+    }
+  ],
+  "otherSkills": [
+    "typescript", "english", "mysql"
+  ]
+}

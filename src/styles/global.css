@@ -429,12 +429,15 @@ ul li {
 .skills-section .top-skills .row {
     display: flex;
     align-content: center;
+    justify-content: center;
 }
 .skills-section .top-skills {
     margin-bottom: 60px;
 }
 .skills-section .top-skills .item {
     margin-bottom: 45px;
+    text-align: center;
+    padding: 15px;
 }
 .skills-section .level {
     color: #8a8a8a;
@@ -466,7 +469,7 @@ ul li {
 }
 
 .chart-easy-pie {
-    positon: relative;
+    text-align: center;
 }
 .chart {
     width: 110px;

@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql, StaticQuery } from "gatsby"
+import Circle from 'react-circle';
 
 class Container extends React.Component {
     renderTestimonialsSection = () => {
@@ -109,6 +110,26 @@ class Container extends React.Component {
         </section>
     }
 
+    renderSkillPercentage = (progress) => {
+        return <Circle
+          animate={true} // Boolean: Animated/Static progress
+          animationDuration="1s" // String: Length of animation
+          responsive={false} // Boolean: Make SVG adapt to parent size
+          size="150" // String: Defines the size of the circle.
+          lineWidth="15" // String: Defines the thickness of the circle's stroke.
+          progress={progress} // String: Update to change the progress and percentage.
+          progressColor="rgb(76, 154, 255)" // String: Color of "progress" portion of circle.
+          bgColor="#ecedf0" // String: Color of "empty" portion of circle.
+          textColor="#6b778c" // String: Color of percentage text color.
+          textStyle={{
+              font: 'bold 4rem Helvetica, Arial, sans-serif' // CSSProperties: Custom styling for percentage.
+          }}
+          percentSpacing={10} // Number: Adjust spacing of "%" symbol and number.
+          roundedStroke={false} // Boolean: Rounded/Flat line ends
+          showPercentage={true} // Boolean: Show/hide percentage.
+          showPercentageSymbol={true} // Boolean: Show/hide only the "%" symbol.
+        />
+    }
     constructor(props) {
         super(props)
         this.state = {
@@ -148,6 +169,7 @@ class Container extends React.Component {
         const education = this.props.data.allEducationJson.nodes
         const portfolio = this.props.data.allProjectsJson.nodes
         const portfolioActive = this.state.portfolioActive
+        const skills = this.props.data.skillsJson
         return (
             <div className="wrapper container">
                 <section id="experiences-section" className="experiences-section section">
@@ -217,65 +239,35 @@ class Container extends React.Component {
                     <div className="top-skills">
                         <h3 className="subtitle">Top Skills</h3>
                         <div className="row">
-                            <div className="item col-xs-12 col-sm-4">
-                                <div className="item-inner">
-                                    <div className="chart-easy-pie text-center">
-                                        <div className="chart-theme-1 chart" data-percent="98"><span>98</span>%</div>
+                            {
+                                skills.mainSkills.map((one, index) => {
+                                    return <div className="item col-xs-12 col-sm-4" key={index}>
+                                        <div className="item-inner">
+                                            <div className="chart-easy-pie text-center">
+                                                {this.renderSkillPercentage(one.proficiencyPercentage)}
+                                            </div>
+                                            <h4 className="skill-name">{one.name}</h4>
+                                            <div className="level">{one.proficiency}</div>
+                                            <div className="desc">
+                                                {
+                                                    one.description
+                                                }
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h4 className="skill-name">Python &amp; Django</h4>
-                                    <div className="level">Expert, 8 years</div>
-                                    <div className="desc">
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula
-                                        eget dolor.
-                                        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="item col-xs-12 col-sm-4">
-                                <div className="item-inner">
-                                    <div className="chart-easy-pie text-center">
-                                        <div className="chart-theme-1 chart" data-percent="90"><span>90</span>%</div>
-                                    </div>
-                                    <h4 className="skill-name">JavaScript</h4>
-                                    <div className="level">Expert, 8 years</div>
-                                    <div className="desc">
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula
-                                        eget dolor.
-                                        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="item col-xs-12 col-sm-4">
-                                <div className="item-inner">
-                                    <div className="chart-easy-pie text-center">
-                                        <div className="chart-theme-1 chart" data-percent="85"><span>85</span>%</div>
-                                    </div>
-                                    <h4 className="skill-name">React &amp; Angular</h4>
-                                    <div className="level">Advanced, 4 years</div>
-                                    <div className="desc">
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula
-                                        eget dolor.
-                                        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
-                                    </div>
-                                </div>
-                            </div>
+                                })
+                            }
                         </div>
                     </div>
 
                     <div className="other-skills">
                         <h3 className="subtitle">Other Skills</h3>
                         <div className="misc-skills">
-                            <span className="skill-tag">HTML5</span>
-                            <span className="skill-tag">CSS3</span>
-                            <span className="skill-tag">SASS</span>
-                            <span className="skill-tag">LESS</span>
-                            <span className="skill-tag">Git</span>
-                            <br/>
-                            <span className="skill-tag">Ruby</span>
-                            <span className="skill-tag">PHP</span>
-                            <span className="skill-tag">Wireframe</span>
-                            <span className="skill-tag">Spanish</span>
-                            <span className="skill-tag">French</span>
+                            {
+                                skills.otherSkills.map((one, index) => {
+                                    return  <span className="skill-tag" key={index}>{one}</span>
+                                })
+                            }
                         </div>
                     </div>
 
@@ -362,6 +354,15 @@ query MyQuery {
       url,
       pic,
       mainTech
+    }
+  }
+  skillsJson {
+    otherSkills
+    mainSkills {
+      description
+      name
+      proficiency
+      proficiencyPercentage
     }
   }
 }
