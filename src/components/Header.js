@@ -14,7 +14,6 @@ class Header extends React.Component {
     const fixedTop = document.getElementById("page-nav-wrapper").getBoundingClientRect().top
     window.onscroll = () => {
       let scrollTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop)
-      //控制元素块A随鼠标滚动固定在顶部
       if (scrollTop >= fixedTop) {
         this.setState({ needFixNav: true })
       } else if (scrollTop < fixedTop) {
@@ -38,12 +37,12 @@ class Header extends React.Component {
 
   render() {
     const navClassName = `page-nav-wrapper text-center ${this.state.needFixNav ? "fixed" : ""}`
-    const { name, jobTitle, selfIntroduction, email, address, phone, personalWebSite,resumeDownloadLink } = this.props.data.profileJson
+    const { name, jobTitle, selfIntroduction, email, address, phone, personalWebSite,resumeDownloadLink,socialLinks } = this.props.data.profileJson
     return (
       <header className="header">
         <div className="top-bar container-fluid">
           <div className="actions">
-            <a className="btn hidden-xs" href="mailto:someone@example.com">
+            <a className="btn hidden-xs" href={`mailto:${email}`}>
               <i className="fa fa-paper-plane" aria-hidden="true"/>
               Hire Me
             </a>
@@ -53,11 +52,11 @@ class Header extends React.Component {
             </a>
           </div>
           <ul className="social list-inline">
-            <li><a href="#"><i className="fa fa-linkedin" aria-hidden="true"/></a></li>
-            <li><a href="#"><i className="fa fa-twitter" aria-hidden="true"/></a></li>
-            <li><a href="#"><i className="fa fa-google-plus" aria-hidden="true"/></a></li>
-            <li><a href="#"><i className="fa fa-github-alt" aria-hidden="true"/></a></li>
-            <li><a href="#"><i className="fa fa-skype" aria-hidden="true"/></a></li>
+            <li><a href={socialLinks[0].linkedin}><i className="fa fa-linkedin" aria-hidden="true"/></a></li>
+            <li><a href={socialLinks[0].twitter}><i className="fa fa-twitter" aria-hidden="true"/></a></li>
+            <li><a href={socialLinks[0].google}><i className="fa fa-google-plus" aria-hidden="true"/></a></li>
+            <li><a href={socialLinks[0].github}><i className="fa fa-github-alt" aria-hidden="true"/></a></li>
+            <li><a href={socialLinks[0].skype}><i className="fa fa-skype" aria-hidden="true"/></a></li>
           </ul>
         </div>
         <div className="intro">
@@ -143,7 +142,14 @@ export default () => (
     address,
     phone,
     personalWebSite,
-    resumeDownloadLink
+    resumeDownloadLink,
+    socialLinks {
+      github
+      google
+      linkedin
+      skype
+      twitter
+    }
   }
 }
     `}
