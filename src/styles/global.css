@@ -381,8 +381,15 @@ ul li {
 .timeline .job-desc {
     color: #666;
 }
+.education-section {
+    margin: 0 auto;
+    margin-bottom: 45px;
+    text-align: center;
+}
 .education-section .item {
     margin-bottom: 45px;
+    display: inline-block;
+    text-align: left;
 }
 .education-section .item-inner {
     padding: 0 30px;
@@ -407,11 +414,16 @@ ul li {
     color: #666;
 }
 .skills-section .subtitle {
+    text-align: center;
     font-size: 18px;
     color: #8a8a8a;
     margin-top: 0;
     margin-bottom: 45px;
     font-weight: 300;
+}
+.skills-section .top-skills .row {
+    display: flex;
+    align-content: center;
 }
 .skills-section .top-skills {
     margin-bottom: 60px;
@@ -438,6 +450,16 @@ ul li {
     margin-bottom: 15px;
     font-size: 16px;
 }
+.skills-section .other-skills .misc-skills {
+    display: flex;
+    align-content: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .chart-easy-pie {
     positon: relative;
 }
@@ -547,8 +569,14 @@ ul li {
     color: #00BCD4;
     border-bottom: 2px solid #00BCD4;
 }
+.portfolio-section .items-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
 .portfolio-section .item {
     margin-bottom: 30px;
+    width: 240px;
+    padding: 15px;
 }
 .portfolio-section .item-inner {
     background: #00BCD4;

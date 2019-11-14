@@ -1,0 +1,16 @@
+[
+  {
+    "name": "SZFC",
+    "type": "backend",
+    "url": "",
+    "mainTech": "Java",
+    "pic": ""
+  },
+  {
+    "name": "startFromZeroTs",
+    "type": "frontend",
+    "url": "",
+    "mainTech": "React",
+    "pic": ""
+  }
+]

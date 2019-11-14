@@ -6,5 +6,13 @@
   "address": "",
   "phone": "18852866178",
   "personalWebSite": "",
-  "resumeDownloadLink": "https://drive.google.com/file/d/1A3P7KYaNm1Ag8jQTojRSV3avoAIl4PY3/view"
+  "resumeDownloadLink": "https://drive.google.com/file/d/1A3P7KYaNm1Ag8jQTojRSV3avoAIl4PY3/view",
+  "socialLinks": [
+    {
+      "linkedin": "",
+      "twitter": "",
+      "google": "",
+      "": ""
+    }
+  ]
 }
