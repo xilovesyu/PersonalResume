@@ -7,7 +7,7 @@ export default function BlogTemplate({ data }) {
     const { frontmatter, html } = markdownRemark
     return (
         <>
-            <div className={"blog"}>
+            <div className={"blog markdown-body"}>
                 <div className={"header"}>
                     <h1>{frontmatter.title}</h1>
                     <h2>{frontmatter.date}</h2>
