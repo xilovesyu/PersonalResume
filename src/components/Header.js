@@ -82,7 +82,7 @@ class Header extends React.Component {
               </li>
               <li className="website">
                 <i className="fa fa-globe"/>
-                <a href="#" target="_blank">No website</a>
+                <a href={personalWebSite} target="_blank">Personal WebSite</a>
               </li>
             </ul>
           </div>
